@@ -1,4 +1,4 @@
-name: Auto Merge Documentation to Main
+name: Auto Merge Documentation to Master
 
 on:
   push:
@@ -14,11 +14,11 @@ jobs:
         with:
           ref: documentation
       
-      - name: Merge to Main
+      - name: Merge to Master
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git fetch origin main
-          git checkout main
+          git fetch origin master
+          git checkout master
           git merge --no-ff --no-edit documentation
-          git push origin main
+          git push origin master
