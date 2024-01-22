@@ -1,8 +1,8 @@
 #include <util/atomic.h>
-#include "PIDcontrol.hpp"
-#include "pins.hpp"
+#include "pidcontrol.hpp"
 
-PIDcontrol pid[NMOTORS];
+// How many motors
+#define NMOTORS 2
 
 // Pins
 const int enca[2] = {2,3};
@@ -33,8 +33,6 @@ void setup() {
   
   attachInterrupt(digitalPinToInterrupt(enca[0]),readEncoder<0>,RISING);
   attachInterrupt(digitalPinToInterrupt(enca[1]),readEncoder<1>,RISING);
-  
-  Serial.println("target pos");
 }
 
 void loop() {
