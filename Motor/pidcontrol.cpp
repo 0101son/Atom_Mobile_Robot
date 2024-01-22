@@ -16,5 +16,3 @@ void PIDcontrol::evalu(int value, int target, float deltaT, int &pwr, int &dir) 
       pwr = 255;
     }
   }
-
-  PIDcontrol::PIDcontrol() : kp(1), kd(0), ki(0), umax(255), eprev(0.0), eintegral(0.0) {}
