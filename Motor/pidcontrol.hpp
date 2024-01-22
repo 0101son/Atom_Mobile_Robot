@@ -1,6 +1,8 @@
 #ifndef PIDCONTROL_H
 #define PIDCONTROL_H
 
+#include <Arduino.h>
+
 class PIDcontrol {
   float kp, kd, ki, umax;
   float eprev, eintegral;
