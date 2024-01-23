@@ -24,8 +24,8 @@ Dynamixel2Arduino dxl(Serial3, OPENCR_DXL_DIR_PIN);
 
 
 MotorDriver::MotorDriver()
-: left_wheel_id_(DXL_MOTOR_ID_LEFT),
-  right_wheel_id_(DXL_MOTOR_ID_RIGHT),
+: left_wheel_id_(MOTOR_ID_LEFT),
+  right_wheel_id_(MOTOR_ID_RIGHT),
   torque_(false)
 {
 }
@@ -68,7 +68,7 @@ Dynamixel2Arduino& MotorDriver::getDxl()
 
 bool MotorDriver::is_connected()
 {
-  return (dxl.ping(DXL_MOTOR_ID_LEFT) == true && dxl.ping(DXL_MOTOR_ID_RIGHT) == true);
+  return (dxl.ping(MOTOR_ID_LEFT) == true && dxl.ping(MOTOR_ID_RIGHT) == true);
 }
 
 bool MotorDriver::set_torque(bool onoff)
