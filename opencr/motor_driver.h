@@ -43,8 +43,6 @@ class MotorDriver
 
   bool control_motors(const float wheel_separation, float linear_value, float angular_value);
 
-  Dynamixel2Arduino& getDxl();
-  
  private:
   uint8_t left_wheel_id_;
   uint8_t right_wheel_id_;
