@@ -1,4 +1,4 @@
-#include "motor_control.h"
+#include "serial_communication.h"
 #include <Arduino.h>
 
 int parseDataToSpeed() {
