@@ -1,20 +1,17 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+#include <Arduino.h>
 
-#define recvCH1 8   
-#define recvCH2 9  
-#define recvCH3 10
-#define recvCH4 11
-#define recvCH5 12
-#define recvCH6 13
-
-class ControlSig {
+class Controller {
 public:
-  Controlsig();
-  void setCH(unsinged long value, int i);
-  unsigned long getCH(int i);
+  Controller(byte recvCH1, byte recvCH2, byte recvCH3,
+             byte recvCH4, byte recvCH5, byte recvCH6);
+  void setValue(byte channel);
+  unsigned long getValue(byte channel);
+  void serialTransmission(byte channel);
 private:
   unsigned long valueCH[6];
+  byte recvCH[6];
 };
 
 #endif
