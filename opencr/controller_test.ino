@@ -2,12 +2,6 @@
 
 #define CHNUM 6
 
-unsigned long valueCH1;
-unsigned long valueCH2;
-unsigned long valueCH3;
-unsigned long valueCH1_p;
-unsigned long valueCH1_m;
-
 Controller c(8, 9, 10, 11, 12, 13);
 
 void setup()
