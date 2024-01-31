@@ -2,7 +2,9 @@
 
 #define CHNUM 6
 
-Controller c(8, 9, 10, 11, 12, 13);
+byte recvCh[6] = {8, 9, 10, 11, 12, 13};
+
+Controller c(recvCh);
 
 void setup()
 {
