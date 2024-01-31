@@ -4,13 +4,14 @@
 
 class Controller {
 public:
-  Controller(byte recvCH[]);
+  Controller(byte recvCH[], byte chNum = 6);
   void setValue(byte channel);
   unsigned long getValue(byte channel);
   void serialTransmission(byte channel);
 private:
-  unsigned long valueCH[6];
-  byte recvCH[6];
+  byte chNum = 6;
+  unsigned long valueCH[chNum];
+  byte recvCH[chNum];
 };
 
 #endif
