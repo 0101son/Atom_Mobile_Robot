@@ -4,8 +4,7 @@
 
 class Controller {
 public:
-  Controller(byte recvCH1, byte recvCH2, byte recvCH3,
-             byte recvCH4, byte recvCH5, byte recvCH6);
+  Controller(byte recvCH[]);
   void setValue(byte channel);
   unsigned long getValue(byte channel);
   void serialTransmission(byte channel);
