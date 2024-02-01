@@ -1,4 +1,4 @@
-#include "communication.h"
+#include "serial_communication.h"
 #include <Arduino.h>
 
 void parseData(char packet[]) {
