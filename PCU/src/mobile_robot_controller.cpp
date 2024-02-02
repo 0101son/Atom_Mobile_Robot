@@ -1,14 +1,14 @@
 #include "mobile_robot_controller.h"
 
-mobileRobotController::mobileRobotController()
+MobileRobotController::MobileRobotController()
 {
 }
 
-mobileRobotController::~mobileRobotController()
+MobileRobotController::~MobileRobotController()
 {
 }
 
-bool Turtlebot3Controller::init(float max_lin_vel, float max_ang_vel)
+bool MobileRobotController::init(float max_lin_vel, float max_ang_vel)
 {
   Serial1 = 0; // Serial1 값을 정해주어야 합니다
 
@@ -20,7 +20,7 @@ bool Turtlebot3Controller::init(float max_lin_vel, float max_ang_vel)
   return true;
 }
 
-void Turtlebot3Controller::getRCdata(float *get_cmd_vel)
+void MobileRobotController::getRCdata(float *get_cmd_vel)
 {
 
   float lin_x = 0.0, ang_z = 0.0;
