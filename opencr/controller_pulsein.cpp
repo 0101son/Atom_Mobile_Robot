@@ -1,4 +1,4 @@
-#include "controller.h"
+#include "controller_pulsein.h"
 
 Controller::Controller(byte recvCH[]) {
   for (int i=0; i<6; i++) {
