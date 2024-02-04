@@ -2,6 +2,8 @@
 #include "Mobile_Robot_Controller.h"
 
 MobileRobotController robotController;
+float max_lin_vel = 110.0;
+float max_ang = 180.0;
 
 void setup()
 {
@@ -9,8 +11,6 @@ void setup()
     Serial.println("Initializing Mobile Robot Controller...");
 
     // 여기에서 max_lin_vel과 max_ang 값을 적절히 설정하세요.
-    float max_lin_vel = 110.0; // 예시 값
-    float max_ang = 180.0;     // 예시 값
 
     if (!robotController.init(max_lin_vel, max_ang))
     {

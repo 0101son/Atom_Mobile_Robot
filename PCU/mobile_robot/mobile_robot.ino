@@ -6,7 +6,7 @@
  * Declaration for controllers
  *******************************************************************************/
 static MobileRobotController controllers;
-static float max_linear_vel = 1.0, max_ang = 1.0;
+static float max_linear_vel = 110.0, max_ang = 180.0;
 static float goal_values[2] = {0.0, 0.0};
 
 enum MortorLocation
@@ -37,6 +37,12 @@ void setup()
 void loop()
 {
     controllers.getRCdata(goal_values);
+
     control_items.goal_rpm = goal_values[0];
     control_items.servo_position = goal_values[1];
+
+    Serial.print("goal_rpm:");
+    Serial.print(control_items.goal_rpm);
+    Serial.print(", servo_position:");
+    Serial.println(control_items.servo_position);
 }
