@@ -1,6 +1,6 @@
 #include "ibus.h"
 
-bool IBus::init(HardwareSerial &serial)
+bool IBus::init()
 {
     serialRef->begin(115200);
     return true;

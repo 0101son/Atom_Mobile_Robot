@@ -3,6 +3,9 @@
 
 #include "ibus.h"
 
+# define velChannel 2
+# define SteerChannel 0
+
 class MobileRobotController
 {
 public:
@@ -19,6 +22,8 @@ private:
     // 계산을 위한 파라미터는 임의로 수정/추가
     float max_lin_vel_;
     float max_ang_;
+    float lin_vel_ratio_;
+    float ang_ratio_;
 };
 
 #endif

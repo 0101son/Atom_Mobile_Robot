@@ -1,5 +1,3 @@
-#include <string.h>
-
 #define IBUS_BUFFSIZE 32
 #define IBUS_MAXCHANNELS 10
 

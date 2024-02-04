@@ -1,16 +1,16 @@
 #include <Arduino.h>
-#include "MobileRobotController.h"
+#include "Mobile_Robot_Controller.h"
 
 MobileRobotController robotController;
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(9600);
     Serial.println("Initializing Mobile Robot Controller...");
 
     // 여기에서 max_lin_vel과 max_ang 값을 적절히 설정하세요.
-    float max_lin_vel = 1.0; // 예시 값
-    float max_ang = 1.0;     // 예시 값
+    float max_lin_vel = 110.0; // 예시 값
+    float max_ang = 180.0;     // 예시 값
 
     if (!robotController.init(max_lin_vel, max_ang))
     {
@@ -27,10 +27,9 @@ void loop()
     robotController.getRCdata(cmd_vel); // RC 데이터 읽기
 
     // 읽은 데이터 출력
-    Serial.print("Linear Velocity: ");
     Serial.print(cmd_vel[0]);
-    Serial.print(", Angular Velocity: ");
-    Serial.println(cmd_vel[1]);
-
-    delay(1000); // 1초마다 반복
+    Serial.print(" ");
+    Serial.print(cmd_vel[1]);
+    Serial.print(" ");
+    Serial.println();
 }
