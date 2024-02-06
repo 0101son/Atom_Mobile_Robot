@@ -8,13 +8,13 @@
 
 class IBus
 {
-public:
+  public:
     IBus(HardwareSerial &serial) : serialRef(&serial) {} // 생성자 수정
     bool init();
     int readChannel(uint8_t channelNr);
-    void readRx(); 
+    void readRx();
 
-private:
+  private:
     HardwareSerial *serialRef; // 시리얼 참조
     uint8_t ibusIndex = 0;
     uint8_t ibus[IBUS_BUFFSIZE] = {0};
