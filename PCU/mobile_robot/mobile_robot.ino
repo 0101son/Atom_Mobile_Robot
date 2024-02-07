@@ -68,6 +68,7 @@ void loop()
   Serial2.write(control_items.reverse);
   Serial2.write(control_items.drive_mod);
   Serial2.write(control_items.estop);
+  // 실험이다
   Serial2.println();
   
   //delay(10);
