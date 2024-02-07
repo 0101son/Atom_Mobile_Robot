@@ -7,8 +7,7 @@
  *******************************************************************************/
 static MobileRobotController controllers;
 static float max_linear_vel = 110.0, max_ang = 180.0;
-static float goal_values[2] = {0.0, 0.0};
-static int switch_values[4] = {0, 0, 0, 0};
+static byte cmd_values[6] = {0};
 
 enum MortorLocation
 {
@@ -21,12 +20,12 @@ enum MortorLocation
 
 typedef struct ControlItemVariables
 {
-  uint32_t goal_rpm;
-  uint32_t servo_position;
-  uint8_t auto_;
-  uint8_t reverse;
-  uint8_t drive_mod;
-  uint8_t estop;
+  byte goal_rpm;
+  byte servo_position;
+  byte auto_;
+  byte reverse;
+  byte drive_mod;
+  byte estop;
   
   int32_t present_rpm[MortorLocation::MOTOR_NUM_MAX];
 } ControlItemVariables;
@@ -42,14 +41,14 @@ void setup()
 
 void loop()
 {
-  controllers.getRCdata(goal_values, switch_values);
+  controllers.getRCdata(cmd_values);
 
-  control_items.goal_rpm = goal_values[0];
-  control_items.servo_position = goal_values[1];
-  control_items.auto_ = switch_values[0];
-  control_items.reverse = switch_values[1];
-  control_items.drive_mod = switch_values[2];
-  control_items.estop = switch_values[3];
+  control_items.goal_rpm = cmd_values[0];
+  control_items.servo_position = cmd_values[1];
+  control_items.auto_ = cmd_values[2];
+  control_items.reverse = cmd_values[3];
+  control_items.drive_mod = cmd_values[4];
+  control_items.estop = cmd_values[5];
 
   Serial.print(control_items.goal_rpm);
   Serial.print(' ');
@@ -63,17 +62,13 @@ void loop()
   Serial.print(' ');
   Serial.println(control_items.estop);
 
-  Serial2.print(control_items.goal_rpm);
-  Serial2.print(' ');
-  Serial2.print(control_items.servo_position);
-  Serial2.print(' ');
-  Serial2.print(control_items.auto_);
-  Serial2.print(' ');
-  Serial2.print(control_items.reverse);
-  Serial2.print(' ');
-  Serial2.print(control_items.drive_mod);
-  Serial2.print(' ');
-  Serial2.println(control_items.estop);
+  Serial2.write(control_items.goal_rpm);
+  Serial2.write(control_items.servo_position);
+  Serial2.write(control_items.auto_);
+  Serial2.write(control_items.reverse);
+  Serial2.write(control_items.drive_mod);
+  Serial2.write(control_items.estop);
+  Serial2.println();
   
   //delay(10);
 }
