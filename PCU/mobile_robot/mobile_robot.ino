@@ -17,7 +17,6 @@ enum MortorLocation
   REAR_RIGHT,
   MOTOR_NUM_MAX
 };
-
 typedef struct ControlItemVariables
 {
   byte goal_rpm;
@@ -50,26 +49,23 @@ void loop()
   control_items.drive_mod = cmd_values[4];
   control_items.estop = cmd_values[5];
 
-  Serial.print(control_items.goal_rpm);
-  Serial.print(' ');
-  Serial.print(control_items.servo_position);
-  Serial.print(' ');
-  Serial.print(control_items.auto_);
-  Serial.print(' ');
-  Serial.print(control_items.reverse);
-  Serial.print(' ');
-  Serial.print(control_items.drive_mod);
-  Serial.print(' ');
-  Serial.println(control_items.estop);
-
+  Serial2.print('z')
   Serial2.write(control_items.goal_rpm);
   Serial2.write(control_items.servo_position);
   Serial2.write(control_items.auto_);
   Serial2.write(control_items.reverse);
   Serial2.write(control_items.drive_mod);
   Serial2.write(control_items.estop);
-  // 실험이다
-  Serial2.println();
+  Serial2.print('{');
+
+  Serial4.print('z');
+  Serial4.write(control_items.goal_rpm);
+  Serial4.write(control_items.servo_position);
+  Serial4.write(control_items.auto_);
+  Serial4.write(control_items.reverse);
+  Serial4.write(control_items.drive_mod);
+  Serial4.write(control_items.estop);
+  Serial4.print('{');
   
   //delay(10);
 }

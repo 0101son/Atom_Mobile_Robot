@@ -31,7 +31,6 @@ void MobileRobotController::getRCdata(byte get_cmd_vel[])
   // float ang_z 0~180
 
   // 예)
-  
   iBus_.readRx();
 
   lin_x = (byte)(iBus_.readChannel(velChannel)-1000);
