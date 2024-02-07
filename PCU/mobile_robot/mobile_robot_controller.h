@@ -2,6 +2,7 @@
 #define MOBILE_ROBOTBOT_CONTROLLER_H_
 
 #include "ibus.h"
+#include <arduino.h>
 
 #define velChannel 2
 #define steerChannel 0
@@ -18,7 +19,7 @@ class MobileRobotController
 
     bool init(float max_lin_vel, float max_ang);
 
-    void getRCdata(float get_cmd_vel[], int get_switch_val[]);
+    void getRCdata(byte get_cmd_vel[]);
 
   private:
     IBus iBus_;
