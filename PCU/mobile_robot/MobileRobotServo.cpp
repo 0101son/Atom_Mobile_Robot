@@ -9,6 +9,10 @@ MobileRobotServo::MobileRobotServo(byte FLPin, byte FRPin, byte RLPin, byte RRPi
 
 MobileRobotServo::~MobileRobotServo() {}
 
+void MobileRobotServo::init() {
+  this->setAngle(90);
+}
+
 void MobileRobotServo::setAngle(byte goal) {
     this->goal_position = goal;
     FLservo.write(goal_position);
