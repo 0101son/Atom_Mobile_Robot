@@ -15,6 +15,7 @@ private:
 public:
     MobileRobotServo(byte FLPin, byte FRPin, byte RLPin, byte RRPin);
     ~MobileRobotServo();
+    void init();
     void setAngle(byte goal);
     float getAngle() const;
 };
