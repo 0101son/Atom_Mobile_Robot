@@ -1,6 +1,7 @@
 #include "MobileRobotServo.h"
 
-MobileRobotServo::MobileRobotServo(byte FLPin, byte FRPin, byte RLPin, byte RRPin) {
+MobileRobotServo::MobileRobotServo(byte FLPin, byte FRPin, byte RLPin, byte RRPin)
+{
     FLservo.attach(FLPin);
     FRservo.attach(FRPin);
     RLservo.attach(RLPin);
@@ -9,11 +10,14 @@ MobileRobotServo::MobileRobotServo(byte FLPin, byte FRPin, byte RLPin, byte RRPi
 
 MobileRobotServo::~MobileRobotServo() {}
 
-void MobileRobotServo::init() {
-  this->setAngle(90);
+void MobileRobotServo::init()
+{
+    this->setAngle(90);
 }
 
-void MobileRobotServo::setAngle(byte goal) {
+void MobileRobotServo::setAngle(byte goal)
+{
+    
     this->goal_position = goal;
     FLservo.write(goal_position);
     FRservo.write(goal_position);
@@ -21,6 +25,7 @@ void MobileRobotServo::setAngle(byte goal) {
     RRservo.write(goal_position);
 }
 
-float MobileRobotServo::getAngle() const {
+float MobileRobotServo::getAngle() const
+{
     return goal_position;
 }

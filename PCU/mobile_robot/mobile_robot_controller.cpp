@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "mobile_robot_controller.h"
 
 MobileRobotController::MobileRobotController() : iBus_(Serial1) {
@@ -23,7 +24,7 @@ bool MobileRobotController::init(float max_lin_vel, float max_ang)
 void MobileRobotController::getRCdata(byte get_cmd_vel[])
 {
 
-  byte lin_x = 0, ang_z = 0, auto_ = 0, reverse = 0, drive_mod = 0, estop = 0;
+  uint16_t lin_x = 0, ang_z = 0, auto_ = 0, reverse = 0, drive_mod = 0, estop = 0;
   
   // 여기에 입력값()을 lin_x(속력), ang_z(조향각)로 변환하는 계산 알고리즘 삽입
   // 계산을 위한 파라미터는 임의로 수정/추가
@@ -34,16 +35,18 @@ void MobileRobotController::getRCdata(byte get_cmd_vel[])
   iBus_.readRx();
 
   lin_x = (byte)(iBus_.readChannel(velChannel)-1000);
-  ang_z = (byte)(iBus_.readChannel(steerChannel)-1000);
+  ang_z = (iBus_.readChannel(steerChannel)-1000);
   auto_ = (byte)(iBus_.readChannel(manualChannel) / 1000 - 1);
   reverse = (byte)(iBus_.readChannel(reverseChannel) / 1000 - 1);
   drive_mod = (byte)(iBus_.readChannel(drivemodChannel) / 500 - 2);
   estop = (byte)(iBus_.readChannel(estopChannel) / 1000 - 1);
   
+  
+
   lin_x = constrain(lin_x, 0, 1000);
 
   lin_x = lin_x*lin_vel_ratio_;
-  ang_z = ang_z*ang_ratio_;
+  ang_z = ang_z*ang_ratio_*2 + 45;
 
   get_cmd_vel[0] = lin_x;
   get_cmd_vel[1] = ang_z;

@@ -4,12 +4,18 @@
 #include "mobile_robot_controller.h"
 #include "MobileRobotServo.h"
 
+Servo FLServo;
+Servo FRServo;
+Servo RLServo;
+Servo RRServo;
+
+
 /*******************************************************************************
    Declaration for controllers
  *******************************************************************************/
 static MobileRobotController controllers;
 static MobileRobotServo servos(3,5,9,11);
-static float max_linear_vel = 110.0, max_ang = 180.0;
+static float max_linear_vel = 110.0, max_ang = 45.0;
 static byte cmd_values[6] = {0};
 static char packet[6] = {0};
 
@@ -51,7 +57,6 @@ static void Thread_Transmit_Data(void const *argument)
     Serial2.print('z');
     Serial2.write(packet, 6);
     Serial2.print('{');
-
     Serial4.print('z');
     Serial4.write(packet, 6);
     Serial4.print('{');
@@ -68,6 +73,10 @@ static void Thread_Receive_Data(void const *argument)
   for (;;)
   {
     controllers.getRCdata(cmd_values);
+
+    
+    
+  
 
     control_items.goal_rpm = cmd_values[0];
     control_items.servo_position = cmd_values[1];
@@ -92,15 +101,30 @@ static void Thread_Servo(void const *argument)
 
   for (;;)
   {
-    servos.setAngle(control_items.servo_position);
+    //servos.setAngle(control_items.servo_position);
+    Serial.print("goal: ");
+    Serial.println(control_items.servo_position);
+    FLServo.write(control_items.servo_position);
+    FRServo.write(control_items.servo_position);
+    RLServo.write(control_items.servo_position);
+    RRServo.write(control_items.servo_position);
   }
 }
 
 void setup()
 {
-  //  Serial.begin(115200);
+  Serial.begin(9600);
+  
   Serial2.begin(115200);
   Serial4.begin(115200);
+
+  FLServo.attach(3);
+  FRServo.attach(5);
+  RLServo.attach(9);
+  RRServo.attach(11);
+  
+
+
   controllers.init(max_linear_vel, max_ang);
   servos.init();
 
@@ -109,7 +133,7 @@ void setup()
   osThreadDef(THREAD_NAME_SERVO,  Thread_Servo,  osPriorityNormal, 0, 1024);
 
   // create thread
-  thread_id_transmit_data = osThreadCreate(osThread(THREAD_NAME_TRANSMIT_DATA), NULL);
+  //thread_id_transmit_data = osThreadCreate(osThread(THREAD_NAME_TRANSMIT_DATA), NULL);
   thread_id_receive_data  = osThreadCreate(osThread(THREAD_NAME_RECEIVE_DATA), NULL);
   thread_id_servo  = osThreadCreate(osThread(THREAD_NAME_SERVO), NULL);
   
@@ -118,4 +142,6 @@ void setup()
 }
 
 void loop()
-{}
+{
+  
+}
